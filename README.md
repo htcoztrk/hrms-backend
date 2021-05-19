@@ -21,3 +21,5 @@ Daha önce kayıtlı bir e-posta var ise kayıt gerçekleşmez. Kullanıcı bilg
 Kabul Kriterleri:
 
 Bu pozisyonlar tekrar edemez. Kullanıcı uyarılır.
+#### ER Diyagramı
+![Veritabanına ait ER Diyagramı](http://url/to/img.png)
