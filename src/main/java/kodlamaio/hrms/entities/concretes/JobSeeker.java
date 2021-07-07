@@ -5,17 +5,23 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name="job_seekers")
+@AllArgsConstructor
+@NoArgsConstructor
 public class JobSeeker {
    @Id
-   @GeneratedValue
+   @GeneratedValue(strategy=GenerationType.IDENTITY)
    @Column(name="id")
    private int Id;  
    
@@ -33,16 +39,7 @@ public class JobSeeker {
    
    @Column(name="birth_date")
    private Date birth_date;
-public JobSeeker() {}
-public JobSeeker(int id, int userId, String first_name, String last_name, String national_identity, Date birth_date) {
-	super();
-	this.Id = id;
-	this.userId = userId;
-	this.first_name = first_name;
-	this.last_name = last_name;
-	this.national_identity = national_identity;
-	this.birth_date = birth_date;
-}
+
 }
 
 
