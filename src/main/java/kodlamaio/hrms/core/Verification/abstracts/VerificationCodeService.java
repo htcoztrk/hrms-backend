@@ -1,8 +1,7 @@
 package kodlamaio.hrms.core.Verification.abstracts;
-
-import kodlamaio.hrms.entities.concretes.JobSeeker;
+import kodlamaio.hrms.entities.concretes.User;
 
 public interface VerificationCodeService {
 
-	boolean sendEmail(JobSeeker jobSeeker);
+	boolean sendEmail(User user);
 }

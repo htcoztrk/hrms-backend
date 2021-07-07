@@ -1,6 +1,5 @@
 package kodlamaio.hrms.entities.concretes;
 
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,26 +14,14 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name="employers")
+@Table(name="jobs")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Employer {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
-  private int id;
-	
-	@Column(name="company_name")
-  private String company_name;
-	
-	@Column(name="website")
-  private String website;
-	
-	@Column(name="phone")
-  private String phone;
-	
-	@Column(name="user_id")
-  private int user_Id;
-
-  
+public class Job {
+	   @Id
+	   @GeneratedValue(strategy=GenerationType.IDENTITY)
+	   @Column(name="id")
+       private int id;
+	   @Column(name="name")
+       private String name;
 }

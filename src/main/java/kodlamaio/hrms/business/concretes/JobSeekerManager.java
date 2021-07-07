@@ -54,9 +54,9 @@ public class JobSeekerManager implements JobSeekerService{
 		else if(!mernisCheckService.checkIfRealPerson(jobSeeker)) {
 			return new ErrorResult("hey men! are you kidding me? you are fake.");
 		}
-		else if(!verificationCodeService.sendEmail(jobSeeker)) {
-			return new ErrorResult("verify your email address and then come back.");
-		}
+		//else if(!verificationCodeService.sendEmail(jobSeeker)) {
+		//	return new ErrorResult("verify your email address and then come back.");
+		//}
 		//else if(!mailCheckService.checkEmail(jobSeeker.getEmail())) {
 		//	return new ErrorResult("Email is not valid.");
 		//}
