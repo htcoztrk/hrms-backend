@@ -42,9 +42,9 @@ public class JobAdvertisement {
    @JoinColumn(name="job_id")
    Job job;
    
-   //@ManyToOne()
-   //@JoinColumn(name="city_id")
-   //City city;
+   @ManyToOne()
+   @JoinColumn(name="city_id")
+   City city;
    
    @ManyToOne()
    @JoinColumn(name="employer_id")
