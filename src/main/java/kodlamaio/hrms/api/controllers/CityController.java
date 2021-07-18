@@ -28,7 +28,7 @@ public class CityController {
     public DataResult<List<City>> getAll(){
   	  return this.cityService.getAll();
     }
-    @GetMapping("/getbyid")
+    @GetMapping("/getbyid/{id}")
     public DataResult<City> getById(@PathVariable int id){
   	  return this.cityService.getById(id);
     }

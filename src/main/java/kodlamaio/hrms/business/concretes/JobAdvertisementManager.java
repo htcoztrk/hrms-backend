@@ -3,6 +3,7 @@ package kodlamaio.hrms.business.concretes;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.JobAdvertisementService;
@@ -48,7 +49,34 @@ public class JobAdvertisementManager implements  JobAdvertisementService{
 
 	@Override
 	public DataResult<JobAdvertisement> getById(int id) {
-		return new SuccessDataResult<JobAdvertisement>(this.jobAdvertisementDao.getOne(id));
+		JobAdvertisement j=this.jobAdvertisementDao.findById(id).get();
+		return new SuccessDataResult<JobAdvertisement>(this.jobAdvertisementDao.findById(id).get());
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> getByActiveStatus() {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByActiveStatuss(),"Active job Ads List:");
+		
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> getAllSortedByDate() {
+		// TODO Auto-generated method stub
+		Sort sort=Sort.by(Sort.Direction.ASC,"release_date");
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAll(sort));
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> getByEmployerId(int id) {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByEmployer_Id(id));
+	}
+
+	@Override
+	public Result makePassive(int id) {
+		JobAdvertisement j=this.jobAdvertisementDao.findById(id).get();
+		j.set_active(false);
+		this.jobAdvertisementDao.save(j);
+		return new SuccessResult("pasif yapıldı");
 	}
 
 }

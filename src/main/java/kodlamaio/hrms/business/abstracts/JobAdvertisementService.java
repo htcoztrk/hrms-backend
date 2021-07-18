@@ -14,4 +14,8 @@ public interface JobAdvertisementService {
 	Result add(JobAdvertisement jobAdvertisement);
 	Result update(JobAdvertisement jobAdvertisement);
 	Result delete(int id);
+	Result makePassive(int id);
+	DataResult<List<JobAdvertisement>> getByActiveStatus();
+	DataResult<List<JobAdvertisement>> getAllSortedByDate();
+	DataResult<List<JobAdvertisement>> getByEmployerId(int id);
 }
