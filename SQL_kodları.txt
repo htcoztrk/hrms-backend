@@ -1,0 +1,125 @@
+-- Please log an issue at https://redmine.postgresql.org/projects/pgadmin4/issues/new if you find any bugs, including reproduction steps.
+BEGIN;
+
+
+CREATE TABLE public.cities
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    city_name character varying,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE public.employers
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    company_name character varying(50) NOT NULL,
+    website character varying(70),
+    phone character varying(15) NOT NULL,
+    user_id integer NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE public.job_advertisements
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    description character varying(30),
+    min_salary integer,
+    max_salary integer,
+    number_of_position integer,
+    due_date date,
+    is_active boolean,
+    job_id integer,
+    city_id integer,
+    employer_id integer,
+    release_date timestamp without time zone,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE public.job_seekers
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    first_name character varying(20) NOT NULL,
+    last_name character varying(20) NOT NULL,
+    national_identity character varying(20) NOT NULL,
+    birth_date date,
+    user_id integer,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE public.jobs
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    name character varying NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE public.system_staffs
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    first_name character varying(20) NOT NULL,
+    last_name character varying(20) NOT NULL,
+    user_id integer NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE public.users
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    email character varying NOT NULL,
+    password character varying NOT NULL,
+    pasword character varying(255),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE public.verifications
+(
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    mernis_verification boolean,
+    email_verification boolean,
+    system_verification boolean,
+    PRIMARY KEY (id)
+);
+
+ALTER TABLE public.employers
+    ADD FOREIGN KEY (user_id)
+    REFERENCES public.users (id)
+    NOT VALID;
+
+
+ALTER TABLE public.job_advertisements
+    ADD FOREIGN KEY (job_id)
+    REFERENCES public.jobs (id)
+    NOT VALID;
+
+
+ALTER TABLE public.job_advertisements
+    ADD FOREIGN KEY (city_id)
+    REFERENCES public.cities (id)
+    NOT VALID;
+
+
+ALTER TABLE public.job_advertisements
+    ADD FOREIGN KEY (employer_id)
+    REFERENCES public.employers (id)
+    NOT VALID;
+
+
+ALTER TABLE public.job_seekers
+    ADD FOREIGN KEY (user_id)
+    REFERENCES public.users (id)
+    NOT VALID;
+
+
+ALTER TABLE public.system_staffs
+    ADD FOREIGN KEY (user_id)
+    REFERENCES public.users (id)
+    NOT VALID;
+
+
+ALTER TABLE public.verifications
+    ADD FOREIGN KEY (user_id)
+    REFERENCES public.users (id)
+    NOT VALID;
+
+END;
