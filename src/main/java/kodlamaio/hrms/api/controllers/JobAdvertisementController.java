@@ -16,6 +16,7 @@ import kodlamaio.hrms.core.utilities.Results.DataResult;
 import kodlamaio.hrms.core.utilities.Results.Result;
 import kodlamaio.hrms.entities.concretes.City;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
+import kodlamaio.hrms.entities.dtos.JobAdvDto;
 
 @RestController
 @RequestMapping("/api/jobadvertisements")
@@ -34,6 +35,10 @@ public class JobAdvertisementController {
    public DataResult<List<JobAdvertisement>> getByActiveStatus(){
 	   return this.jobAdvertisementService.getByActiveStatus();
    }
+   @GetMapping("/getdtobyactivestatus")
+   public DataResult<List<JobAdvDto>> getDtoByActiveStatus(){
+	   return this.jobAdvertisementService.getDtoByActiveStatus();
+   }
    @GetMapping("/getallsortedbydate")
    public DataResult<List<JobAdvertisement>> getAllSortedByDate(){
 	   return this.jobAdvertisementService.getAllSortedByDate();
@@ -45,6 +50,10 @@ public class JobAdvertisementController {
    @GetMapping("/getbyid/{id}")
    public DataResult<JobAdvertisement> getById(@PathVariable int id){
  	  return this.jobAdvertisementService.getById(id);
+   }
+   @GetMapping("/getactivesbyemployerid/{id}")
+   public DataResult<List<JobAdvertisement>> getActiveAdvByEmpId(@PathVariable int id){
+ 	  return this.jobAdvertisementService.getActiveAdvByEmployer(id);
    }
    @PostMapping("/add")
    public Result add(@RequestBody JobAdvertisement jobAdv){

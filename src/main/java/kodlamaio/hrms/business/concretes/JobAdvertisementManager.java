@@ -14,6 +14,7 @@ import kodlamaio.hrms.core.utilities.Results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.JobAdvertisementDao;
 import kodlamaio.hrms.entities.concretes.City;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
+import kodlamaio.hrms.entities.dtos.JobAdvDto;
 @Service
 public class JobAdvertisementManager implements  JobAdvertisementService{
 
@@ -79,4 +80,17 @@ public class JobAdvertisementManager implements  JobAdvertisementService{
 		return new SuccessResult("pasif yapıldı");
 	}
 
+	@Override
+	public DataResult<List<JobAdvertisement>> getActiveAdvByEmployer(int employerId) {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getActiveAdvByEmployer(employerId),"");	
+		}
+
+	@Override
+	public DataResult<List<JobAdvDto>> getDtoByActiveStatus() {
+		return new SuccessDataResult<List<JobAdvDto>>(this.jobAdvertisementDao.getDtoByActiveStatus());
+	}
+
+	
+	
+	
 }
