@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -34,9 +35,6 @@ public class JobSeeker  {
    @GeneratedValue(strategy=GenerationType.IDENTITY)
    @Column(name="id")
    private int Id;  
-   
-   @Column(name="user_id")
-   private int userId; 
    
    @Column(name="first_name")
    private String first_name;
@@ -61,6 +59,13 @@ public class JobSeeker  {
    
    @OneToMany(mappedBy="jobseeker")
    private List<Skill> skills;
+   
+   @OneToMany(mappedBy="jobseeker")
+   private List<CoverLetter> coverletter;
+   
+   @OneToOne()
+   @JoinColumn(name="user_id")
+   private User user;
    
    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
    @JoinTable(name = "jobseeker_language",

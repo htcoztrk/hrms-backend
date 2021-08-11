@@ -69,7 +69,7 @@ public class JobSeekerManager implements JobSeekerService{
 	public Result NullControl(JobSeeker jobSeeker) {
 		if(jobSeeker.getBirth_date()==null
 				||jobSeeker.getLast_name()==null
-				||jobSeeker.getUserId()==0
+				||jobSeeker.getUser().getId()==0
 				||jobSeeker.getFirst_name()==null
 				
 				) {

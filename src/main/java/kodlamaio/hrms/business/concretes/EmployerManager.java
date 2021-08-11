@@ -63,7 +63,7 @@ public class EmployerManager implements EmployerService {
 	public Result CheckIfNull(Employer employer) {
 		if(employer.getPhone()==null
 				||employer.getCompany_name()==null
-				||employer.getUser_Id()==0
+				||employer.getUser().getId()==0
 				||employer.getWebsite()==null
 				){
 			return new ErrorResult("fill all the field");
