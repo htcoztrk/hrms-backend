@@ -1,6 +1,7 @@
 package kodlamaio.hrms.entities.concretes;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -31,7 +32,7 @@ public class Image {
 	private String imageUrl;
 	
 	@Column(name="uploaded_date")
-	private LocalDateTime uploadedDate;
+	private String uploadedDate;
 	
 	 @OneToOne()
 	 @JoinColumn(name="user_id")
