@@ -22,4 +22,4 @@ Kabul Kriterleri:
 
 Bu pozisyonlar tekrar edemez. Kullanıcı uyarılır.
 #### ER Diyagramı
-![Veritabanına ait ER Diyagramı](https://github.com/htcoztrk/hrms-backend/blob/master/ER.PNG)
+![Veritabanına ait ER Diyagramı](https://github.com/htcoztrk/hrms-backend/blob/master/ER.png)
