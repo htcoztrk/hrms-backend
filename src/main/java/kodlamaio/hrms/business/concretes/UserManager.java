@@ -29,9 +29,8 @@ public class UserManager implements UserService{
 	}
 
 	@Override
-	public DataResult<User> getById() {
-		// TODO Auto-generated method stub
-		return null;
+	public DataResult<User> getById(int id) {
+		return new SuccessDataResult<User>(this.userDao.findById(id).get(),"user listed");
 	}
 
 	@Override

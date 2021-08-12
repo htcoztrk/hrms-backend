@@ -18,6 +18,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -48,18 +49,23 @@ public class JobSeeker  {
    @Column(name="birth_date")
    private Date birth_date;
 
+   @JsonIgnore
    @OneToMany(mappedBy="jobseeker")
    private List<Education> educations;
    
+   @JsonIgnore
    @OneToMany(mappedBy="jobseeker")
    private List<SocialMediaAccount> socialMediaAccounts;
    
+   @JsonIgnore
    @OneToMany(mappedBy="jobseeker")
    private List<Experience> experiences;
    
+   /*@JsonIgnore
    @OneToMany(mappedBy="jobseeker")
-   private List<Skill> skills;
+   private List<Skill> skills;*/
    
+   @JsonIgnore
    @OneToMany(mappedBy="jobseeker")
    private List<CoverLetter> coverletter;
    
@@ -75,6 +81,8 @@ public class JobSeeker  {
            inverseJoinColumns = {
                    @JoinColumn(name = "language_id")})
    private List<Language> language;
+   
+  
 }
 
 

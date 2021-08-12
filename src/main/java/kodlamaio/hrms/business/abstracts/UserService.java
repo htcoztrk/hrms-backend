@@ -9,7 +9,7 @@ import kodlamaio.hrms.entities.concretes.User;
 public interface UserService {
 
 	DataResult<List<User>> getAll();
-	DataResult<User> getById();
+	DataResult<User> getById(int id);
 	Result add(User user);
 	Result update(User user);
 	Result delete(int id);

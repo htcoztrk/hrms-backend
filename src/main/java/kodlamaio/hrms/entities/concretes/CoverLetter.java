@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,6 +34,7 @@ public class CoverLetter {
 	@Column(name="body")
 	private String body;
 	
+	@JsonIgnore
 	@ManyToOne()
 	@JoinColumn(name="jobseeker_id")
 	JobSeeker jobseeker;

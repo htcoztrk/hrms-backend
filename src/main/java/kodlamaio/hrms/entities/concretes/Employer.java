@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -43,6 +44,7 @@ public class Employer {
 	   @JoinColumn(name="user_id")
 	   private User user;
 
+	@JsonIgnore
 	@OneToMany(mappedBy="employer")
     private List<JobAdvertisement> advertisements;
     
