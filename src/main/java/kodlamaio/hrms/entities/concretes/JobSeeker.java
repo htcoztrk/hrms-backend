@@ -49,7 +49,7 @@ public class JobSeeker  {
    @Column(name="birth_date")
    private Date birth_date;
 
-   @JsonIgnore
+   //@JsonIgnore
    @OneToMany(mappedBy="jobseeker")
    private List<Education> educations;
    
@@ -61,10 +61,6 @@ public class JobSeeker  {
    @OneToMany(mappedBy="jobseeker")
    private List<Experience> experiences;
    
-   /*@JsonIgnore
-   @OneToMany(mappedBy="jobseeker")
-   private List<Skill> skills;*/
-   
    @JsonIgnore
    @OneToMany(mappedBy="jobseeker")
    private List<CoverLetter> coverletter;
@@ -73,7 +69,18 @@ public class JobSeeker  {
    @JoinColumn(name="user_id")
    private User user;
    
-   @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+   @JsonIgnore
+   @OneToMany(mappedBy="jobseeker")
+   private List<LanguageJobseeker> languagejobseekers;
+	
+   @JsonIgnore
+   @OneToMany(mappedBy="jobseeker")
+   private List<SkillJobseeker> skilljobseekers;
+   
+   
+  // @JsonIgnore
+  // @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+  /* @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
    @JoinTable(name = "jobseeker_language",
            joinColumns = {
                    @JoinColumn(name = "jobseeker_id")
@@ -82,7 +89,16 @@ public class JobSeeker  {
                    @JoinColumn(name = "language_id")})
    private List<Language> language;
    
-  
+  */
+   
+   /*@ManyToMany(cascade = CascadeType.ALL)
+   @JoinTable(name = "jobseeker_skill",
+           joinColumns = {
+                   @JoinColumn(name = "jobseeker_id")
+           },
+           inverseJoinColumns = {
+                   @JoinColumn(name = "skill_id")})
+   private List<Skill> skill;*/
 }
 
 

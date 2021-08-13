@@ -13,7 +13,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,12 +36,7 @@ public class Skill {
 	   @Column(name="name")
 	   private String name; 
 	   
-	   @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	   @JoinTable(name = "jobseeker_skill",
-	           joinColumns = {
-	                   @JoinColumn(name = "skill_id")
-	           },
-	           inverseJoinColumns = {
-	                   @JoinColumn(name = "jobseeker_id")})
-	   private List<JobSeeker> jobseeker; 
+	   @JsonIgnore
+	   @OneToMany(mappedBy="skill")
+	   private List<SkillJobseeker> skilljobseekers;
 }

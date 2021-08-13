@@ -63,7 +63,7 @@ public class JobAdvertisementManager implements  JobAdvertisementService{
 	@Override
 	public DataResult<List<JobAdvertisement>> getAllSortedByDate() {
 		// TODO Auto-generated method stub
-		Sort sort=Sort.by(Sort.Direction.ASC,"release_date");
+		Sort sort=Sort.by(Sort.Direction.ASC,"releaseDate");
 		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAll(sort));
 	}
 

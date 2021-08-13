@@ -57,7 +57,8 @@ CREATE TABLE public.images
     id integer NOT NULL,
     image_url character varying(255),
     user_id integer,
-    uploaded_date timestamp without time zone,
+    uploaded_date character varying(255),
+    public_id character varying(255),
     PRIMARY KEY (id)
 );
 
@@ -95,16 +96,18 @@ CREATE TABLE public.jobs
     PRIMARY KEY (id)
 );
 
-CREATE TABLE public.jobseeker_language
+CREATE TABLE public.language_jobseeker
 (
-    jobseeker_id integer NOT NULL,
-    language_id integer NOT NULL
+    id integer NOT NULL,
+    level integer,
+    jobseeker_id integer,
+    language_id integer,
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE public.languages
 (
     id integer NOT NULL,
-    level integer,
     name character varying(255),
     PRIMARY KEY (id)
 );
@@ -112,7 +115,16 @@ CREATE TABLE public.languages
 CREATE TABLE public.resumes
 (
     id integer NOT NULL,
-    user_id integer,
+    jobseeker_id integer,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE public.skill_jobseeker
+(
+    id integer NOT NULL,
+    description character varying(255),
+    jobseeker_id integer,
+    skill_id integer,
     PRIMARY KEY (id)
 );
 
@@ -120,7 +132,6 @@ CREATE TABLE public.skills
 (
     id integer NOT NULL,
     name character varying(255),
-    jobseeker_id integer,
     PRIMARY KEY (id)
 );
 
@@ -221,25 +232,31 @@ ALTER TABLE public.job_seekers
     NOT VALID;
 
 
-ALTER TABLE public.jobseeker_language
-    ADD FOREIGN KEY (language_id)
-    REFERENCES public.languages (id)
-    NOT VALID;
-
-
-ALTER TABLE public.jobseeker_language
+ALTER TABLE public.language_jobseeker
     ADD FOREIGN KEY (jobseeker_id)
     REFERENCES public.job_seekers (id)
     NOT VALID;
 
 
-ALTER TABLE public.resumes
-    ADD FOREIGN KEY (user_id)
-    REFERENCES public.users (id)
+ALTER TABLE public.language_jobseeker
+    ADD FOREIGN KEY (language_id)
+    REFERENCES public.languages (id)
     NOT VALID;
 
 
-ALTER TABLE public.skills
+ALTER TABLE public.resumes
+    ADD FOREIGN KEY (jobseeker_id)
+    REFERENCES public.job_seekers (id)
+    NOT VALID;
+
+
+ALTER TABLE public.skill_jobseeker
+    ADD FOREIGN KEY (skill_id)
+    REFERENCES public.skills (id)
+    NOT VALID;
+
+
+ALTER TABLE public.skill_jobseeker
     ADD FOREIGN KEY (jobseeker_id)
     REFERENCES public.job_seekers (id)
     NOT VALID;

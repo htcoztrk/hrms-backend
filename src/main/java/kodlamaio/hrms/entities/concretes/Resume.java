@@ -26,8 +26,8 @@ public class Resume {
 	private int id;
 	
 	@OneToOne()
-	@JoinColumn(name="user_id")
-    private User user;
+	@JoinColumn(name="jobseeker_id")
+    private JobSeeker jobseeker;
 	
 	
 	
