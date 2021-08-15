@@ -10,7 +10,7 @@ public interface CoverLetterService {
 
 	DataResult<List<CoverLetter>> getAll();
 	DataResult<CoverLetter> getById(int id);
-	Result add(CoverLetter coverLetter);
+	Result add(int id,CoverLetter coverLetter);
 	Result update(CoverLetter coverLetter);
 	Result delete(int id);
 }

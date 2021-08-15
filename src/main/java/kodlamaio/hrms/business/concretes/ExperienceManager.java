@@ -11,16 +11,19 @@ import kodlamaio.hrms.core.utilities.Results.Result;
 import kodlamaio.hrms.core.utilities.Results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.Results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.ExperienceDao;
+import kodlamaio.hrms.dataAccess.abstracts.JobSeekerDao;
 import kodlamaio.hrms.entities.concretes.Experience;
 
 @Service
 public class ExperienceManager implements ExperienceService{
 
 	ExperienceDao experienceDao;
+	JobSeekerDao jobseekerDao;
 	@Autowired
-	public ExperienceManager(ExperienceDao experienceDao) {
+	public ExperienceManager(ExperienceDao experienceDao, JobSeekerDao jobseekerDao) {
 		super();
 		this.experienceDao = experienceDao;
+		this.jobseekerDao=jobseekerDao;
 	}
 
 	@Override
@@ -34,7 +37,8 @@ public class ExperienceManager implements ExperienceService{
 	}
 
 	@Override
-	public Result add(Experience experience) {
+	public Result add(Experience experience,int id) {
+		experience.setJobseeker(this.jobseekerDao.findById(id).get());
 		this.experienceDao.save(experience);
 		return new SuccessResult("ekleme yapıldı");
 	}

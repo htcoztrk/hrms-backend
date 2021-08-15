@@ -11,16 +11,19 @@ import kodlamaio.hrms.core.utilities.Results.Result;
 import kodlamaio.hrms.core.utilities.Results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.Results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.EducationDao;
+import kodlamaio.hrms.dataAccess.abstracts.JobSeekerDao;
 import kodlamaio.hrms.entities.concretes.Education;
 
 @Service
 public class EducationManager implements EducationService {
 
 	private EducationDao educationDao;
+	private JobSeekerDao jobseekerDao;
 	@Autowired
-	public EducationManager(EducationDao educationDao) {
+	public EducationManager(EducationDao educationDao,JobSeekerDao jobseekerDao) {
 		super();
 		this.educationDao = educationDao;
+		this.jobseekerDao=jobseekerDao;
 	}
 
 	@Override
@@ -34,7 +37,9 @@ public class EducationManager implements EducationService {
 	}
 
 	@Override
-	public Result add(Education education) {
+	public Result add(Education education,int jobseekerId) {
+		education.setJobseeker(this.jobseekerDao.findById(jobseekerId).get());
+		
 		this.educationDao.save(education);
 		return new SuccessResult("ekleme yapıldı");
 	}
@@ -49,6 +54,11 @@ public class EducationManager implements EducationService {
 	public Result delete(int id) {
 		this.educationDao.deleteById(id);
 		return new SuccessResult("silme yapıldı");
+	}
+
+	@Override
+	public DataResult<List<Education>> getByJobseekerId(int id) {
+		return new SuccessDataResult<List<Education>>(this.educationDao.getByJobseeker_Id(id));
 	}
 
 }

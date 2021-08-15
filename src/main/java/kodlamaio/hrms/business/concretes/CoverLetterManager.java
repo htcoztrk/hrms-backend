@@ -11,16 +11,18 @@ import kodlamaio.hrms.core.utilities.Results.Result;
 import kodlamaio.hrms.core.utilities.Results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.Results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.CoverLetterDao;
+import kodlamaio.hrms.dataAccess.abstracts.JobSeekerDao;
 import kodlamaio.hrms.entities.concretes.CoverLetter;
 @Service
 public class CoverLetterManager implements  CoverLetterService{
 
 	private CoverLetterDao coverLetterDao;
-	
+	private JobSeekerDao jobseekerDao;
 	@Autowired
-	public CoverLetterManager(CoverLetterDao coverLetterDao) {
+	public CoverLetterManager(CoverLetterDao coverLetterDao,JobSeekerDao jobseekerDao) {
 		super();
 		this.coverLetterDao = coverLetterDao;
+		this.jobseekerDao=jobseekerDao;
 	}
 	@Override
 	public DataResult<List<CoverLetter>> getAll() {
@@ -36,7 +38,8 @@ public class CoverLetterManager implements  CoverLetterService{
 	}
 
 	@Override
-	public Result add(CoverLetter coverLetter) {
+	public Result add(int id, CoverLetter coverLetter) {
+		coverLetter.setJobseeker(this.jobseekerDao.findById(id).get());
 		this.coverLetterDao.save(coverLetter);
 		return new SuccessResult("cover letter added");
 	}

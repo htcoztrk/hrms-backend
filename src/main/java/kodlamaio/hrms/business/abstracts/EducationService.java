@@ -9,7 +9,8 @@ import kodlamaio.hrms.entities.concretes.Education;
 public interface EducationService {
 	DataResult<List<Education>> getAll();
 	DataResult<Education> getById(int id);
-	Result add(Education education);
+	DataResult<List<Education>> getByJobseekerId(int id);
+	Result add(Education education,int jobseekerId);
 	Result update(Education education);
 	Result delete(int id);
 }

@@ -11,6 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +23,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name="educations")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobseeker"})
+
 public class Education {
 	   @Id
 	   @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -41,6 +46,7 @@ public class Education {
 	   @Column(name="graduation_date")
        private Date graduationDate;
        
+	  // @JsonIgnore
        @ManyToOne()
        @JoinColumn(name="jobseeker_id")
        JobSeeker jobseeker;

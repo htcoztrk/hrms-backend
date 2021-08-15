@@ -9,7 +9,7 @@ import kodlamaio.hrms.entities.concretes.Experience;
 public interface ExperienceService {
 	DataResult<List<Experience>> getAll();
 	DataResult<Experience> getById(int id);
-	Result add(Experience experience);
+	Result add(Experience experience,int id);
 	Result update(Experience experience);
 	Result delete(int id);
 }

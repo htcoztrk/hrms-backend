@@ -51,5 +51,15 @@ public class ResumeManager implements ResumeService{
 		return new SuccessResult("deleted");
 	}
 
+	/*@Override
+	public DataResult<ResumeDto> getResumeDto(int id) {
+		return new SuccessDataResult<ResumeDto>(this.resumeDao.getResumeDto(id));
+	}*/
+
+	@Override
+	public DataResult<Resume> getByJobseekerId(int id) {
+		return new SuccessDataResult<Resume>(this.resumeDao.getByJobseeker_Id(id));
+	}
+
 	
 }

@@ -30,12 +30,12 @@ import lombok.NoArgsConstructor;
 @Table(name="job_seekers")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","educations","socialMediaAccounts"})
+//@JsonIgnoreProperties({"hibernateLazyInitializer","handler","experiences"})
 public class JobSeeker  {
    @Id
    @GeneratedValue(strategy=GenerationType.IDENTITY)
    @Column(name="id")
-   private int Id;  
+   private int id;  
    
    @Column(name="first_name")
    private String first_name;
@@ -53,27 +53,27 @@ public class JobSeeker  {
    @OneToMany(mappedBy="jobseeker")
    private List<Education> educations;
    
-   @JsonIgnore
+   //@JsonIgnore
    @OneToMany(mappedBy="jobseeker")
    private List<SocialMediaAccount> socialMediaAccounts;
    
-   @JsonIgnore
+   //@JsonIgnore
    @OneToMany(mappedBy="jobseeker")
    private List<Experience> experiences;
    
-   @JsonIgnore
+   //@JsonIgnore
    @OneToMany(mappedBy="jobseeker")
-   private List<CoverLetter> coverletter;
+   private List<CoverLetter> coverletters;
    
    @OneToOne()
    @JoinColumn(name="user_id")
    private User user;
    
-   @JsonIgnore
+  // @JsonIgnore
    @OneToMany(mappedBy="jobseeker")
    private List<LanguageJobseeker> languagejobseekers;
 	
-   @JsonIgnore
+   //@JsonIgnore
    @OneToMany(mappedBy="jobseeker")
    private List<SkillJobseeker> skilljobseekers;
    

@@ -9,6 +9,8 @@ import kodlamaio.hrms.entities.concretes.Resume;
 public interface ResumeService {
 	DataResult<List<Resume>> getAll();
 	DataResult<Resume> getById(int id);
+	DataResult<Resume> getByJobseekerId(int id);
+	//DataResult<ResumeDto> getResumeDto(int id);
 	Result add(Resume resume);
 	Result update(Resume resume);
 	Result delete(int id);

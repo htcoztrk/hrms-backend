@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.EducationService;
@@ -34,9 +35,13 @@ public EducationController(EducationService educationService) {
  public DataResult<Education> getById(@PathVariable int id){
 	  return this.educationService.getById(id);
  }
+ @GetMapping("/getbyjobseekerid/{id}")
+ public DataResult<List<Education>> getByJobseekerId(@PathVariable int id){
+	  return this.educationService.getByJobseekerId(id);
+ }
  @PostMapping("/add")
- public Result add(@RequestBody Education education){
-	  return this.educationService.add(education);
+ public Result add(@RequestBody Education education, @RequestParam int id){
+	  return this.educationService.add(education,id);
  }
  @PostMapping("/update")
  public Result update(@RequestBody Education education){

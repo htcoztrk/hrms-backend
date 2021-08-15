@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.SocialMediaAccService;
@@ -35,8 +36,8 @@ public class SocialMediaAccController {
   	  return this.socialMediaAccService.getById(id);
     }
     @PostMapping("/add")
-    public Result add(@RequestBody SocialMediaAccount socialMediaAccount){
-  	  return this.socialMediaAccService.add(socialMediaAccount);
+    public Result add(@RequestParam int id,@RequestBody SocialMediaAccount socialMediaAccount){
+  	  return this.socialMediaAccService.add(id,socialMediaAccount);
     }
     @PostMapping("/update")
     public Result update(@RequestBody SocialMediaAccount socialMediaAccount){

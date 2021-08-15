@@ -32,6 +32,14 @@ public DataResult<List<Resume>> getAll(){
 public DataResult<Resume> getById(@PathVariable int id){
 	  return this.resumeService.getById(id);
 }
+@GetMapping("/getbyjobseekerid/{id}")
+public DataResult<Resume> getByJobseekerId(@PathVariable int id){
+	  return this.resumeService.getByJobseekerId(id);
+}
+/*@GetMapping("/getdtobyid/{id}")
+public DataResult<ResumeDto> getResumeDto(@PathVariable int id){
+	  return this.resumeService.getResumeDto(id);
+}*/
 @PostMapping("/add")
 public Result add(@RequestBody Resume Resume){
 	  return this.resumeService.add(Resume);

@@ -10,6 +10,7 @@ import kodlamaio.hrms.core.utilities.Results.DataResult;
 import kodlamaio.hrms.core.utilities.Results.Result;
 import kodlamaio.hrms.core.utilities.Results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.Results.SuccessResult;
+import kodlamaio.hrms.dataAccess.abstracts.JobSeekerDao;
 import kodlamaio.hrms.dataAccess.abstracts.SocialMediaAccDao;
 import kodlamaio.hrms.entities.concretes.SocialMediaAccount;
 
@@ -17,10 +18,12 @@ import kodlamaio.hrms.entities.concretes.SocialMediaAccount;
 public class SocialMediaAccManager implements SocialMediaAccService{
 
 	private SocialMediaAccDao socialMediaAccDao;
+	private JobSeekerDao jobseekerDao;
 	@Autowired
-	public SocialMediaAccManager(SocialMediaAccDao socialMediaAccDao) {
+	public SocialMediaAccManager(SocialMediaAccDao socialMediaAccDao,JobSeekerDao jobseekerDao) {
 		super();
 		this.socialMediaAccDao = socialMediaAccDao;
+		this.jobseekerDao=jobseekerDao;
 	}
 
 	@Override
@@ -34,7 +37,8 @@ public class SocialMediaAccManager implements SocialMediaAccService{
 	}
 
 	@Override
-	public Result add(SocialMediaAccount socialMedia) {
+	public Result add(int id,SocialMediaAccount socialMedia) {
+		socialMedia.setJobseeker(this.jobseekerDao.findById(id).get());
 		this.socialMediaAccDao.save(socialMedia);
 		return new SuccessResult("added");
 	}
